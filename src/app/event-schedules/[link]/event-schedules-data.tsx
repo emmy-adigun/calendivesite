@@ -1,0 +1,312 @@
+'use client';
+import Input from "@/components/FormFields/Input";
+import Label from "@/components/FormFields/Label";
+import TextArea from "@/components/FormFields/TextArea";
+import PrimaryButton from "@/components/PrimaryButton";
+import VanillaCalendar from "@/components/VanillaCalendar";
+import { candidateInfoErrorType, successDataType } from "@/hooks/types";
+import { faArrowLeft, faCalendar, faCheckCircle, faClock, faEnvelope, faGlobe, faMapPin, faPhoneAlt, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SetStateAction, useEffect, useState } from "react";
+import FormatDate from '@/components/FormatDate';
+import ScheduledEventData from "@/data/scheduled-event";
+import { toast } from "react-toastify";
+import { useGeneralQueries } from "@/hooks/generalQueries";
+import Link from "next/link";
+
+const EventSchedulesData = ({params}:any) => {
+    const { sendCandidateAvailabilityMethod } = useGeneralQueries({ middleware: 'guest' });
+    const scheduledEvent = ScheduledEventData(params.link);
+    const options: never[] = [];
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [comment, setComment] = useState('');
+    const [timezone, setTimezone] = useState('');
+    const [step, setStep] = useState(1);
+    const [status, setStatus] = useState(0);
+    const [selectedDate, setSelectedDate]  = useState('');
+    const [selectedTime, setSelectedTime] = useState('');
+    const [processing, setProcessing] =  useState(false);
+    const today = new Date();
+    const startDate = scheduledEvent?.start_date? scheduledEvent?.start_date : today;
+    const endDate = scheduledEvent?.end_date? scheduledEvent?.end_date : today;
+    const schedule_id =  scheduledEvent.schedule_id;
+
+    const [errors, setErrors] = useState<candidateInfoErrorType>({
+        msg: '',
+        email: [],
+        name: [],
+        phone: [],
+        comment: [],
+        selectedDate: [],
+        selectedTime: [],
+        schedule_id:  []
+    })
+
+    const [data, setData] = useState<successDataType>({
+        message:'',
+        data: [],
+        status: ''
+    });
+
+    const handdleBackNext = (type:string) => {
+        if(type === 'back'){
+            setStep(1);
+        }else if(type === 'next'){
+            if(selectedTime  == '' || selectedDate == ''){
+                toast.error('Please select a date and time', {
+                    position: toast.POSITION.TOP_LEFT,
+                });
+                return
+            }
+            setStep(2);
+        }
+    }
+
+    
+    const submitForm = async (event: { preventDefault: () => void; }) => {
+        event.preventDefault()
+        setProcessing(true);
+        setStatus(0);
+        try {
+            const sendAvailability = await sendCandidateAvailabilityMethod({
+                name,
+                email,
+                phone,
+                comment,
+                selectedDate,
+                selectedTime,
+                schedule_id,
+                setErrors,
+                setStatus,
+                setData
+            });
+        } catch (error) {
+            setProcessing(false);
+        }
+    }
+
+    useEffect(() => {
+        if (status === 200) {
+            setProcessing(false);
+            setStep(3);
+        } else if (status === 422 || status === 404) {
+            if (errors) {
+                toast.error(errors.msg, {
+                    position: toast.POSITION.TOP_LEFT,
+                });
+                setProcessing(false);
+            }
+        }else if(status === 500){
+            toast.error('Sorry an internal server error occured, please contact the technical support team.', {
+                position: toast.POSITION.TOP_LEFT,
+                
+            });
+            setProcessing(false);
+        }
+    }, [status, errors]);
+    const sn  =  1;
+    
+
+    return(
+        <div className="w-full">
+            {scheduledEvent != ""? (
+                <>
+                    <div className="py-5 bg-[#4285F4]">
+                        <h1 className="text-center text-white text-[30px]">{scheduledEvent.name}</h1>
+                    </div>
+                    <div className="py-10 container">
+                        {step === 1 && (
+                            <div className="md:flex gap-20">
+                                <div className="grow border-r">
+                                    <p>{scheduledEvent.name}</p>
+                                    <FontAwesomeIcon icon={faClock}/>  <span>1hr</span>
+                                </div>
+                                <div className="flex-none">
+                                    <h3 className="">Select Date and Time</h3>
+                                    <div className="ml-[-30px]">
+                                        <VanillaCalendar config={{
+                                            settings: {
+                                                range: {
+                                                    disablePast: true,
+                                                    disableAllDays: true,
+                                                    // //disableWeekday: [0],
+                                                    min: startDate,
+                                                    max: endDate,
+                                                    enabled: scheduledEvent.schedule_dates,
+                                                },
+                                                selected: {
+                                                    dates: [selectedDate],
+                                                },
+                                            },
+                                            actions: {
+                                                clickDay(event, self) {
+                                                    setSelectedDate(self.selectedDates[0]);
+                                                },
+                                            },
+                                        }} 
+                                        />
+                                    </div>
+                                    <div>
+                                        <p>Timezone</p><FontAwesomeIcon icon={faGlobe}/>
+                                        <select name="timezone" id="timezone">
+                                            <option value="wat">West Africa Time {`(${today.getHours()}:${today.getMinutes()})`}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="grow mt-10 md:mt-0">
+                                    <p>
+                                        {selectedDate !== '' &&  (
+                                            <FormatDate dateString={selectedDate}/>
+                                        )}
+                                    </p>
+                                    
+                                    {scheduledEvent.schedule_times?.map((time: any, index: number) => (
+                                        <div key={index}  className={`border border-blue-300 p-3 text-center font-bold text-blue-500 ${selectedTime == time?'bg-blue-500 text-white':''}`}>
+                                            <button onClick={()=>setSelectedTime(time)}>{time}</button>
+                                        </div>
+                                    ))}
+                                    <div className="mt-5">
+                                        <PrimaryButton type="button" className="w-[40%] py-2 rounded-xl bg-blue-500 text-white rounded border border-[#0169FF] hover:text-[#0169FF]" disabled={false} onClick={() => handdleBackNext('next')}>Next</PrimaryButton>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        )}
+                        {step === 2 && (
+                            <div className="md:flex gap-30">
+                                <div className="flex-none border-r pr-0 md:pr-20">
+                                    <div>
+                                        <button onClick={()=>handdleBackNext('back')}>
+                                            <p className="border border-blue-300 p-[10px] w-[40px] h-[42px] rounded-full">
+                                                <FontAwesomeIcon icon={faArrowLeft} className="text-blue-500"/>
+                                            </p>
+                                        </button>
+                                    </div>
+                                    <div className="mt-10 pt-5 font-semibold text-gray-900">
+                                        <p className="mb-5">{scheduledEvent.name}</p>
+                                        <FontAwesomeIcon icon={faClock}/>  <span className="mx-2">1hr</span>
+                                    </div>
+                                    <div className="mt-10">
+                                        <p>
+                                            <FontAwesomeIcon icon={faCalendar}/> 
+                                            <span className="mx-3">{selectedTime}, <FormatDate dateString={selectedDate}/></span>
+                                        </p>
+                                    </div>
+                                    <div className="mt-5">
+                                        <p>
+                                            <FontAwesomeIcon icon={faMapPin}/>
+                                            <span className="mx-3">West African Time</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="grow p-5">
+                                    <h1 className="font-semibold">Enter  Details</h1>
+                                
+                                    <form  onSubmit={submitForm} className="form">
+                                        <div className="form-group mt-4">
+                                            <Label htmlFor="name">Name*</Label>
+                                            <Input
+                                                id="name"
+                                                type="text"
+                                                value={name}
+                                                className={`block mt-1 w-full md:w-[80%] px-3 ${errors.name.length > 0 ? 'border-red-500' : ''}`}
+                                                onChange={(event: { target: { value: SetStateAction<string>; }; }) => setName(event.target.value)}
+                                            /> 
+                                        </div>
+                                        <div className="form-group mt-5">
+                                            <Label htmlFor="email">Email*</Label>
+                                            <Input
+                                                id="email"
+                                                type="email"
+                                                value={email}
+                                                className={`block mt-1 w-full md:w-[80%] px-3 ${errors.email.length > 0 ? 'border-red-500' : ''}`}
+                                                onChange={(event: { target: { value: SetStateAction<string>; }; }) => setEmail(event.target.value)}
+                                            /> 
+                                        </div>
+                                        <div className="form-group mt-5">
+                                            <Label htmlFor="phone">Phone Number*</Label>
+                                            <Input
+                                                id="phone"
+                                                type="phone"
+                                                value={phone}
+                                                className={`block mt-1 w-full md:w-[80%] px-3 ${errors.phone.length > 0 ? 'border-red-500' : ''}`}
+                                                onChange={(event: { target: { value: SetStateAction<string>; }; }) => setPhone(event.target.value)}
+                                            /> 
+                                        </div>
+                                        <div className="form-group mt-5">
+                                            <Label htmlFor="phone">Please share anything that will help prepare for our meeting.</Label>
+                                            <TextArea 
+                                                name="comment" 
+                                                id="comment" 
+                                                className={`block mt-1 w-full md:w-[80%] px-3 ${errors.comment.length > 0 ? 'border-red-500' : ''}`}
+                                                value={comment}
+                                                onChange={(event: { target: { value: SetStateAction<string>; }; }) => setComment(event.target.value)}
+                                                rows={4}
+                                            />
+                                        </div>
+                                        <div className="form-group mt-5">
+                                            <PrimaryButton type="submit" className="w-[30%] py-3 bg-blue-500 text-white rounded border border-[#0169FF] hover:text-[#0169FF]" disabled={processing}>
+                                                {processing?(
+                                                    <>Processing...</>
+                                                ):(
+                                                    <>Schedule Event</>
+                                                )}
+                                            </PrimaryButton>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        )}
+
+                        {step === 3 && (
+                            <div className="mt-10 w-full">
+                                <div className="text-center">
+                                    <h1 className="font-semibold">
+                                        <FontAwesomeIcon icon={faCheckCircle} className="text-green-800" />
+                                        <span>You are scheduled</span>
+                                    </h1>
+                                    <p className="mt-10">A calendar invitation has been sent to your email address</p>
+                                </div>
+                                <div className="border mt-20 md:w-[50%] mx-auto py-10 px-5">
+                                    <h2>
+                                        <FontAwesomeIcon icon={faUser}/>
+                                        <span className="mx-3">{name}</span>
+                                    </h2>
+                                    <h2>
+                                        <FontAwesomeIcon icon={faEnvelope}/>
+                                        <span className="mx-3">{email}</span>
+                                    </h2>
+                                    <h2 className="mt-3">
+                                        <FontAwesomeIcon icon={faClock}/>
+                                        <span className="mx-3">{selectedTime}, <FormatDate dateString={selectedDate}/></span>
+                                    </h2>
+                                    <h2 className="mt-3">
+                                        <FontAwesomeIcon icon={faMapPin}/>
+                                        <span className="mx-3">West African Time</span>
+                                    </h2>
+                                    <h2 className="mt-3">
+                                        <FontAwesomeIcon icon={faPhoneAlt}/>
+                                        <span className="mx-3">{phone}</span>
+                                    </h2>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </>
+            ):(
+                <div className="mt-[200px]  text-center">
+                    <h1>
+                        Loading...
+                    </h1>
+                    <div className="my-5">
+                        <Link href="/" className="px-10 py-5 bg-[#4285F4] text-white">Home</Link>
+                    </div>
+                </div>
+            )}
+        </div>
+    )
+}
+
+export default EventSchedulesData;
