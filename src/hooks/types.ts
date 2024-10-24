@@ -140,3 +140,19 @@ export interface candidateInfoProp{
     setErrors: (errors: candidateInfoErrorType) => void;
     setData: (data: successDataType) => void;
 }
+
+export interface djLatsEventRegErrorType{
+    msg: string;
+    email: string[];
+    name: string[];
+    phone: string[];
+}
+
+export interface djLatsEventRegProp{
+    email:string;
+    name: string;
+    phone: string;
+    setStatus : (status : number) => void;
+    setErrors: (errors: djLatsEventRegErrorType) => void;
+    setData: (data: successDataType) => void;
+}

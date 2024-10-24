@@ -1244,5 +1244,11 @@
   }
 }
 
+.latsBg{
+  background: url('/images/djlats.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
   
