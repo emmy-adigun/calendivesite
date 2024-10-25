@@ -1,6 +1,7 @@
 'use client';
 import Image from "next/image";
 import musicIcon from "../../../public/images/music_icon.svg"
+import djlats from "../../../public/images/djlats.png"
 import Input from "@/components/FormFields/Input";
 import Label from "@/components/FormFields/Label";
 import { SetStateAction, useEffect, useState } from "react";
@@ -8,6 +9,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 import { djLatsEventRegErrorType, successDataType } from "@/hooks/types";
 import { toast } from "react-toastify";
 import { useGeneralQueries } from "@/hooks/generalQueries";
+import { AdleryFont, AdleryFont2 } from "../font";
 
 const LatsTheDjData = ()=>{
     const { registerForDjLatsEvents } = useGeneralQueries({ middleware: 'guest' });
@@ -68,17 +70,19 @@ const LatsTheDjData = ()=>{
             setProcessing(false);
         }
     }, [status, errors]);
+
+   
     
     return(
         <div className="w-full">
             <div className="flex w-full bg-gradient-to-r from-[#431A56] to-[#2E044E]">
-                <div  className="w-[30%] md:w-[20%] latsBg">
-                    {/* <Image src={djlats}alt="Lats the DJ" className="w-full"/> */}
+                <div  className="w-[40%] md:w-[20%]">
+                    <Image src={djlats} alt="Lats the DJ" className="w-full h-full"/>
                 </div>
-                <div className="w-[70%] md:w-[80%] py-[40px]">
+                <div className="w-[60%] md:w-[80%] py-[40px]">
                     <Image src={musicIcon} alt="music icon" className="mx-auto"/>
                     <div className="text-center text-white mt-1">
-                        <h1 className="leading-normal font-medium text-[40px] md:text-[69px]">JOIN THE <br/>VIBE WITH</h1>
+                        <h1 className={`leading-normal font-medium text-[40px] md:text-[69px]`} style={AdleryFont.style}>JOIN THE VIBE WITH</h1>
                         <h1 className="font-medium text-[28px] leading-normal mt-1">LATS THE DJ</h1>
                     </div>
                 </div>
