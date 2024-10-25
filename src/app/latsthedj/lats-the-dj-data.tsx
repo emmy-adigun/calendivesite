@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
-import musicIcon from "../../../public/images/music_icon.svg"
-import djlats from "../../../public/images/djlats.png"
+import musicIcon from "../../../public/images/musicicon.png"
+import djlats from "../../../public/images/dj2.png"
 import Input from "@/components/FormFields/Input";
 import Label from "@/components/FormFields/Label";
 import { SetStateAction, useEffect, useState } from "react";
@@ -77,11 +77,13 @@ const LatsTheDjData = ()=>{
     return(
         <div className="w-full">
             <div className="flex w-full bg-gradient-to-r from-[#431A56] to-[#2E044E]">
-                <div  className="w-[156px] md:w-[156px]">
+                <div  className="w-[50%] md:w-[20%]">
                     <Image src={djlats} alt="Lats the DJ" className=""/>
                 </div>
-                <div className="w-[60%] md:w-[80%] py-[15px]">
-                    <Image src={musicIcon} alt="music icon" className="mx-auto"/>
+                <div className="w-[50%] md:w-[80%] py-[15px]">
+                    <div className="w-[30%] mx-auto">
+                        <Image src={musicIcon} alt="music icon"/>
+                    </div>
                     <div className="text-center text-white mt-1">
                         <h1 className={`leading-none font-medium text-[69px]`} style={AdleryFont.style}>JOIN THE VIBE WITH</h1>
                         <h1 className="font-medium text-[28px] leading-normal">LATS THE DJ</h1>
