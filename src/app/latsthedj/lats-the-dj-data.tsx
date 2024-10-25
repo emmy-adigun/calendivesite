@@ -77,7 +77,7 @@ const LatsTheDjData = ()=>{
     return(
         <div className="w-full">
             <div className="flex w-full bg-gradient-to-r from-[#431A56] to-[#2E044E]">
-                <div  className="w-[156px] md:w-[156px]">
+                <div  className="">
                     <Image src={djlats} alt="Lats the DJ" className=""/>
                 </div>
                 <div className="w-[60%] md:w-[80%] py-[15px]">
