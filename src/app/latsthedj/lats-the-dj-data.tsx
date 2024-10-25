@@ -77,7 +77,7 @@ const LatsTheDjData = ()=>{
     return(
         <div className="w-full">
             <div className="flex w-full bg-gradient-to-r from-[#431A56] to-[#2E044E]">
-                <div  className="w-[40%] md:w-[20%]">
+                <div  className="w-[40%] md:w-[20%] bg-[2E044E]">
                     <Image src={djlats} alt="Lats the DJ" className=""/>
                 </div>
                 <div className="w-[60%] md:w-[80%] py-[15px]">
@@ -85,7 +85,7 @@ const LatsTheDjData = ()=>{
                         <Image src={musicIcon} alt="music icon"/>
                     </div>
                     <div className="text-center text-white mt-1">
-                        <h1 className={`leading-10 font-medium text-[50px] md:text-[69px]`} style={AdleryFont.style}>JOIN THE <br/>VIBE WITH</h1>
+                        <h1 className={`leading-10 md:leading-none font-medium text-[50px] md:text-[69px]`} style={AdleryFont.style}>JOIN THE <br/>VIBE WITH</h1>
                         <h1 className="font-medium text-[28px] leading-normal">LATS THE DJ</h1>
                     </div>
                 </div>
