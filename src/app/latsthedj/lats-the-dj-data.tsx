@@ -87,7 +87,7 @@ const LatsTheDjData = ()=>{
                     </div>
                 </div>
             </div>
-            <div className="p-10 w-full lg:w-[50%] mx-auto">
+            <div className="p-5 w-full lg:w-[50%] mx-auto">
                 <p  className="text-[19px] font-normal text-[#2E044E]">Be the first to know about exclusive events, special offers, and updates from Lats the DJ. Sign up now and stay connected!</p>
                 <form onSubmit={submitForm} method="post" className="block mt-5">
                     <div className="form-group mt-4">
