@@ -9,7 +9,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 import { djLatsEventRegErrorType, successDataType } from "@/hooks/types";
 import { toast } from "react-toastify";
 import { useGeneralQueries } from "@/hooks/generalQueries";
-import { AdleryFont, AdleryFont2 } from "../font";
+import { AdleryFont } from "../font";
 
 const LatsTheDjData = ()=>{
     const { registerForDjLatsEvents } = useGeneralQueries({ middleware: 'guest' });
@@ -77,8 +77,8 @@ const LatsTheDjData = ()=>{
     return(
         <div className="w-full">
             <div className="flex w-full bg-gradient-to-r from-[#431A56] to-[#2E044E]">
-                <div  className="w-[40%] md:w-[20%]">
-                    <Image src={djlats} alt="Lats the DJ" className="w-full"/>
+                <div  className="w-[156px] md:w-[156px]">
+                    <Image src={djlats} alt="Lats the DJ" className=""/>
                 </div>
                 <div className="w-[60%] md:w-[80%] py-[15px]">
                     <Image src={musicIcon} alt="music icon" className="mx-auto"/>
