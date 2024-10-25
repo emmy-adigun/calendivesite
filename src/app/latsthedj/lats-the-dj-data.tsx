@@ -82,11 +82,11 @@ const LatsTheDjData = ()=>{
                 <div  className="w-[40%] md:w-[20%]">
                     <Image src={djlats} alt="Lats the DJ" className="w-full"/>
                 </div>
-                <div className="w-[60%] md:w-[80%] py-[20px]">
+                <div className="w-[60%] md:w-[80%] py-[18px]">
                     <Image src={musicIcon} alt="music icon" className="mx-auto"/>
                     <div className="text-center text-white mt-1">
                         <h1 className={`leading-none font-medium text-[69px]`} style={AdleryFont.style}>JOIN THE VIBE WITH</h1>
-                        <h1 className="font-medium text-[28px] leading-normal mt-1">LATS THE DJ</h1>
+                        <h1 className="font-medium text-[28px] leading-normal">LATS THE DJ</h1>
                     </div>
                 </div>
             </div>
