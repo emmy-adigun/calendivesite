@@ -82,7 +82,7 @@ const LatsTheDjData = ()=>{
                 <div className="w-[60%] md:w-[80%] py-[40px]">
                     <Image src={musicIcon} alt="music icon" className="mx-auto"/>
                     <div className="text-center text-white mt-1">
-                        <h1 className={`leading-normal font-medium text-[40px] md:text-[69px]`} style={AdleryFont.style}>JOIN THE VIBE WITH</h1>
+                        <h1 className={`leading-normal font-medium text-[69px]`} style={AdleryFont.style}>JOIN THE VIBE WITH</h1>
                         <h1 className="font-medium text-[28px] leading-normal mt-1">LATS THE DJ</h1>
                     </div>
                 </div>
