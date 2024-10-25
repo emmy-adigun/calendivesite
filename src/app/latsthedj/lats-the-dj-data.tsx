@@ -55,9 +55,7 @@ const LatsTheDjData = ()=>{
             toast.success(data.message, {
                 position: toast.POSITION.TOP_RIGHT,
             });
-            setTimeout(() => {
-                window.location.reload();
-            }, 3000);
+            setTimeout(() => {window.location.reload();}, 5000);
         } else if (status === 422 || status === 404) {
             if (errors) {
                 toast.error(errors.msg, {
@@ -82,7 +80,7 @@ const LatsTheDjData = ()=>{
                 <div  className="w-[40%] md:w-[20%]">
                     <Image src={djlats} alt="Lats the DJ" className="w-full"/>
                 </div>
-                <div className="w-[60%] md:w-[80%] py-[18px]">
+                <div className="w-[60%] md:w-[80%] py-[15px]">
                     <Image src={musicIcon} alt="music icon" className="mx-auto"/>
                     <div className="text-center text-white mt-1">
                         <h1 className={`leading-none font-medium text-[69px]`} style={AdleryFont.style}>JOIN THE VIBE WITH</h1>
