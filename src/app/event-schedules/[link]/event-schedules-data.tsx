@@ -17,16 +17,21 @@ import Link from "next/link";
 const EventSchedulesData = ({params}:any) => {
     const { sendCandidateAvailabilityMethod } = useGeneralQueries({ middleware: 'guest' });
     const scheduledEvent = ScheduledEventData(params.link);
+    const scheduleData = scheduledEvent?.schedule_dates
     const options: never[] = [];
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [comment, setComment] = useState('');
     const [timezone, setTimezone] = useState('');
+    const [amount, setAmount] = useState(scheduledEvent.price);
+    const [transaction_reference, setTransactionReference] = useState('');
     const [step, setStep] = useState(1);
     const [status, setStatus] = useState(0);
     const [selectedDate, setSelectedDate]  = useState('');
     const [selectedTime, setSelectedTime] = useState('');
+    const [filteredTimes, setFilteredTimes] = useState<string[]>([]);
+
     const [processing, setProcessing] =  useState(false);
     const today = new Date();
     const startDate = scheduledEvent?.start_date? scheduledEvent?.start_date : today;
@@ -64,6 +69,13 @@ const EventSchedulesData = ({params}:any) => {
         }
     }
 
+    const handleDateSelection = (date: string) => {
+        if (selectedDate !== date) {
+            setSelectedDate(date);
+            const selectedSchedule = scheduleData.find((item: any) => item.date === date);
+            setFilteredTimes(selectedSchedule ? selectedSchedule.time : []);
+        }
+    };
     
     const submitForm = async (event: { preventDefault: () => void; }) => {
         event.preventDefault()
@@ -89,8 +101,14 @@ const EventSchedulesData = ({params}:any) => {
 
     useEffect(() => {
         if (status === 200) {
+            if(scheduledEvent.price != 0){
+                setAmount(scheduledEvent.price);
+                setTransactionReference(data.data.transaction_reference);
+                setStep(3);
+            }else{
+                setStep(4);
+            }
             setProcessing(false);
-            setStep(3);
         } else if (status === 422 || status === 404) {
             if (errors) {
                 toast.error(errors.msg, {
@@ -123,55 +141,76 @@ const EventSchedulesData = ({params}:any) => {
                                     <p>{scheduledEvent.name}</p>
                                     <FontAwesomeIcon icon={faClock}/>  <span>1hr</span>
                                 </div>
-                                <div className="flex-none">
-                                    <h3 className="">Select Date and Time</h3>
-                                    <div className="ml-[-30px]">
-                                        <VanillaCalendar config={{
-                                            settings: {
-                                                range: {
-                                                    disablePast: true,
-                                                    disableAllDays: true,
-                                                    // //disableWeekday: [0],
-                                                    min: startDate,
-                                                    max: endDate,
-                                                    enabled: scheduledEvent.schedule_dates,
-                                                },
-                                                selected: {
-                                                    dates: [selectedDate],
-                                                },
-                                            },
-                                            actions: {
-                                                clickDay(event, self) {
-                                                    setSelectedDate(self.selectedDates[0]);
-                                                },
-                                            },
-                                        }} 
-                                        />
-                                    </div>
-                                    <div>
-                                        <p>Timezone</p><FontAwesomeIcon icon={faGlobe}/>
-                                        <select name="timezone" id="timezone">
-                                            <option value="wat">West Africa Time {`(${today.getHours()}:${today.getMinutes()})`}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="grow mt-10 md:mt-0">
-                                    <p>
-                                        {selectedDate !== '' &&  (
-                                            <FormatDate dateString={selectedDate}/>
-                                        )}
-                                    </p>
-                                    
-                                    {scheduledEvent.schedule_times?.map((time: any, index: number) => (
-                                        <div key={index}  className={`border border-blue-300 p-3 text-center font-bold text-blue-500 ${selectedTime == time?'bg-blue-500 text-white':''}`}>
-                                            <button onClick={()=>setSelectedTime(time)}>{time}</button>
+                                <div className="md:grid md:grid-cols-2 gap-20">
+                                    <div className="">
+                                        <h3>Select Date and Time</h3>
+                                        <div className="ml-[-30px]">
+                                            <VanillaCalendar
+                                                config={{
+                                                    settings: {
+                                                        range: {
+                                                            disablePast: true,
+                                                            min: startDate,
+                                                            max: endDate,
+                                                        },
+                                                        selected: {
+                                                            dates: [selectedDate],
+                                                        },
+                                                    },
+                                                    actions: {
+                                                        clickDay(event, self) {
+                                                            const clickedDate = self.selectedDates[0];
+                                                            if (clickedDate) {
+                                                                handleDateSelection(clickedDate);
+                                                            }
+                                                        },
+                                                    },
+                                                }}
+                                            />
                                         </div>
-                                    ))}
-                                    <div className="mt-5">
-                                        <PrimaryButton type="button" className="w-[40%] py-2 rounded-xl bg-blue-500 text-white rounded border border-[#0169FF] hover:text-[#0169FF]" disabled={false} onClick={() => handdleBackNext('next')}>Next</PrimaryButton>
+                                        <div>
+                                            <p>Timezone</p><FontAwesomeIcon icon={faGlobe}/>
+                                            <select name="timezone" id="timezone">
+                                                <option value="wat">West Africa Time {`(${today.getHours()}:${today.getMinutes()})`}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="mt-10 md:mt-0">
+                                        <p>
+                                            {selectedDate && <FormatDate dateString={selectedDate} />}
+                                        </p>
+                    
+                                        {filteredTimes.length > 0 ? (
+                                            filteredTimes.map((time, index) => (
+                                                <div
+                                                    key={index}
+                                                    className={`border border-blue-300 p-3 text-center font-bold text-blue-500 ${
+                                                        selectedTime === time
+                                                            ? "bg-blue-500 text-white"
+                                                            : ""
+                                                    }`}
+                                                >
+                                                    <button onClick={() => setSelectedTime(time)}>
+                                                        {time}
+                                                    </button>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <p>No available times for the selected date.</p>
+                                        )}
+                    
+                                        <div className="mt-5">
+                                            <button
+                                                type="button"
+                                                className="w-[40%] py-2 rounded-xl bg-blue-500 text-white border border-[#0169FF] hover:text-[#0169FF]"
+                                                onClick={() => handdleBackNext('next')}
+                                                disabled={!selectedTime}
+                                            >
+                                                Next
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            
                             </div>
                         )}
                         {step === 2 && (
@@ -202,6 +241,11 @@ const EventSchedulesData = ({params}:any) => {
                                     </div>
                                 </div>
                                 <div className="grow p-5">
+                                    <p>
+                                        {scheduledEvent.price != '0' && (
+                                            <>This is a paid event, please note that you will be redirected to make payment to continue.</>
+                                        )}
+                                    </p>
                                     <h1 className="font-semibold">Enter  Details</h1>
                                 
                                     <form  onSubmit={submitForm} className="form">
@@ -261,6 +305,63 @@ const EventSchedulesData = ({params}:any) => {
                         )}
 
                         {step === 3 && (
+                             <div className="md:flex gap-30">
+                                <div className="flex-none border-r pr-0 md:pr-20">
+                                    <h2>
+                                        <FontAwesomeIcon icon={faUser}/>
+                                        <span className="mx-3">{name}</span>
+                                    </h2>
+                                    <h2>
+                                        <FontAwesomeIcon icon={faEnvelope}/>
+                                        <span className="mx-3">{email}</span>
+                                    </h2>
+                                    <h2 className="mt-3">
+                                        <FontAwesomeIcon icon={faClock}/>
+                                        <span className="mx-3">{selectedTime}, <FormatDate dateString={selectedDate}/></span>
+                                    </h2>
+                                    <h2 className="mt-3">
+                                        <FontAwesomeIcon icon={faMapPin}/>
+                                        <span className="mx-3">West African Time</span>
+                                    </h2>
+                                    <h2 className="mt-3">
+                                        <FontAwesomeIcon icon={faPhoneAlt}/>
+                                        <span className="mx-3">{phone}</span>
+                                    </h2>
+                                </div>
+                                <div className="grow p-5">
+                                    <h1 className="font-semibold">Confirm Payment Details</h1>
+                                    <p>You are about to pay the amount below for this event.</p>
+                                    <form action={process.env.NEXT_PUBLIC_INTERSWITCH_PAYMENT_ACTION_URL} method="post" className="form">
+                                        <input name="merchant_code" value={process.env.NEXT_PUBLIC_INTERSWITCH_MERCHANT_CODE} type="hidden"/>
+                                        <input name="pay_item_id" value={scheduledEvent.schedule_id} type="hidden"/>
+                                        <input name="site_redirect_url" value={process.env.NEXT_PUBLIC_INTERSWITCH_PAYMENT_REDIRECT_URL} type="hidden"/>
+                                        <input name="txn_ref" value={transaction_reference} type="hidden"/>
+                                        <input name="currency" value="566" type="hidden" />
+                                        <div className="form-group mt-4">
+                                            <Label htmlFor="name">Amount*</Label>
+                                            <Input
+                                                id="amount"
+                                                type="number"
+                                                value={amount}
+                                                className={`block mt-1 w-full md:w-[80%] px-3 ${errors.name.length > 0 ? 'border-red-500' : ''}`}
+                                                onChange={(event: { target: { value: SetStateAction<string>; }; }) => setAmount(event.target.value)}
+                                            /> 
+                                        </div>
+                                        <div className="form-group mt-5">
+                                            <PrimaryButton type="submit" className="w-[30%] py-3 bg-blue-500 text-white rounded border border-[#0169FF] hover:text-[#0169FF]" disabled={processing}>
+                                                {processing?(
+                                                    <>Processing...</>
+                                                ):(
+                                                    <>Click Here to Proceed.</>
+                                                )}
+                                            </PrimaryButton>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        )}
+
+                        {step === 4 && (
                             <div className="mt-10 w-full">
                                 <div className="text-center">
                                     <h1 className="font-semibold">
@@ -298,7 +399,7 @@ const EventSchedulesData = ({params}:any) => {
             ):(
                 <div className="mt-[200px]  text-center">
                     <h1>
-                        Loading...
+                       Event Not found
                     </h1>
                     <div className="my-5">
                         <Link href="/" className="px-10 py-5 bg-[#4285F4] text-white">Home</Link>
