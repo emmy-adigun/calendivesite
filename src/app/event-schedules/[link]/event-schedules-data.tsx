@@ -399,7 +399,7 @@ const EventSchedulesData = ({params}:any) => {
             ):(
                 <div className="mt-[200px]  text-center">
                     <h1>
-                       Event Not found
+                       Loading...
                     </h1>
                     <div className="my-5">
                         <Link href="/" className="px-10 py-5 bg-[#4285F4] text-white">Home</Link>

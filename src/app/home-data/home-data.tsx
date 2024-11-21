@@ -103,14 +103,14 @@ const HomeData = () => {
                 </div>
             </section>
             <section className="w-full mt-[50px]">
-                <div className="w-[90%] md:w-[70%] mx-auto bg-gradient-to-b from-[#CFF8E2] to-[#EDFFF5] pt-[40px] rounded-[16px] shadow">
-                    <div className="md:w-[31%] mx-auto">
+                <div className="w-[90%] md:w-[70%] mx-auto bg-gradient-to-b from-[#CFF8E2] to-[#EDFFF5] pt-[40px] rounded-[16px] shadow md:px-20 px-5">
+                    <div className="md:w-[50%] mx-auto">
                         <h3 className="font-semibold text-[18px] md:text-[24px] leading-[20px] md:leading-[32px] text-center">Schedule your Daily Tasks & Organise your Calendar</h3>
                     </div>
-                    <div className="md:w-[63.5%] text-[14px] md:text-[18px] leadin-[10px] md:leading-[28px] text-center font-normal mx-auto mt-5">
+                    <div className="md:w-[85.5%] text-[14px] md:text-[18px] leadin-[10px] md:leading-[28px] text-center font-normal mx-auto mt-5">
                         <p>Let&apos;s organise your day by setting up your meetings for increased productivity, and help you monitor your schedules and receive notifications for upcoming tasks..</p>
                     </div>
-                    <div className="mx-auto mt-[-50px] md:mt-[-150px]">
+                    <div className="mx-auto mt-[20px] md:mt-[40px]">
                         <Image src={schedule} alt="schedule"/>
                     </div>
                 </div>
