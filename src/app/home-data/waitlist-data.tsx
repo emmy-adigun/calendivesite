@@ -59,20 +59,20 @@ const WaitListData = () => {
     }, [status, errors]);
     return (
         <form method="post" onSubmit={submitForm}>
-            <div className="mx-auto flex mt-[30px]">
+            <div className="mx-auto h-14 flex mt-[30px] relative">
                 <div className="grow">
                     <input 
                         type="email" 
                         id="email" 
                         name="email" 
-                        className="w-full pl-3 py-4 md:py-3 border-[0.5px] border-[#AFAFAF] rounded-tl-[12px] rounded-bl-[12px]"
+                        className="w-full pl-3 h-full border-[0.5px] border-[#AFAFAF] rounded-tl-[12px] rounded-bl-[12px]"
                         placeholder="Email Address"
                         value={email}
                         required
                         onChange={(event: { target: { value: SetStateAction<string>; }; }) => setEmail(event.target.value)}
                     />
                 </div>
-                <div className="bg-[#0A70E0] text-center py-2 md:py-3 px-2 md:px-4  rounded-tr-[12px] rounded-br-[12px]">
+                <div className="bg-[#0A70E0] text-center h-full flex px-2 md:px-4  rounded-tr-[12px] rounded-br-[12px] relative">
                     <button type="submit" className="text-white leading-tight" disabled={processing}>
                         {processing?(
                             'Processing...'

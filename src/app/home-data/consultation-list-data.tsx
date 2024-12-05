@@ -72,7 +72,7 @@ const ConsultationListData = () => {
                         onChange={(event: { target: { value: SetStateAction<string>; }; }) => setEmail(event.target.value)}
                     />
                 </div>
-                <div className="max-w-[235.2px] bg-[#0A70E0] text-center pt-5 md:pt-3 px-4 rounded-tr-[12px] rounded-br-[12px]">
+                <div className="max-w-[235.2px] bg-[#0A70E0] text-center h-auto flex px-2 rounded-tr-[12px] rounded-br-[12px]">
                     <button type="submit" className="text-white leading-tight" disabled={processing}>
                         {processing?(
                             'Processing...'
