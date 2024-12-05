@@ -86,7 +86,7 @@ const LemonadeDiariesData = ()=>{
     return(
         <div className="w-full">
             <div className="w-full bg-[#FEEAA9] text-center py-10">
-                <h1 className="text-[52px] leading-[60px] font-serif">Lemonade <br/> Diaries X Lohn</h1>
+                <h1 className="text-[40px] text-[52px] leading-[60px] font-serif">Lemonade <br/> Diaries X Lohn</h1>
                 <h5 className="text-[21px] mt-3">Event RSVP</h5>
             </div>
             <div className="w-full px-5 md:px-10 pt-10">
@@ -109,7 +109,7 @@ const LemonadeDiariesData = ()=>{
                             onChange={(event: { target: { value: SetStateAction<string>; }; }) => setName(event.target.value)}
                         /> 
                     </div>
-                    <div className="form-group mt-2">
+                    <div className="form-group">
                         <p className="flex">
                             <Label htmlFor="email">Email</Label><span className="text-red-500">*</span>
                         </p>
@@ -121,7 +121,7 @@ const LemonadeDiariesData = ()=>{
                             onChange={(event: { target: { value: SetStateAction<string>; }; }) => setEmail(event.target.value)}
                         /> 
                     </div>
-                    <div className="form-group mt-2">
+                    <div className="form-group">
                         <p className="flex">
                             <Label htmlFor="phone">Mobile Number (Whatsapp preferred)</Label><span className="text-red-500">*</span>
                         </p>
@@ -134,7 +134,7 @@ const LemonadeDiariesData = ()=>{
                         /> 
                     </div>
                     
-                    <div className="form-group mt-2">
+                    <div className="form-group">
                         <p className="flex">
                             <Label htmlFor="phone">Instagram / Tiktok Handle</Label>
                         </p>
@@ -146,7 +146,7 @@ const LemonadeDiariesData = ()=>{
                             onChange={(event: { target: { value: SetStateAction<string>; }; }) => setSocialHandle(event.target.value)}
                         /> 
                     </div>
-                    <div className="form-group mt-2">
+                    <div className="form-group">
                         <p className="flex">
                             <Label htmlFor="hearAboutUs">How did you hear about Lemonade Diaries X Lohn</Label>
                         </p>
@@ -158,7 +158,7 @@ const LemonadeDiariesData = ()=>{
                             onChange={(event: { target: { value: SetStateAction<string>; }; }) => sethearAboutUs(event.target.value)}
                         /> 
                     </div>
-                    <div className="form-group mt-5 md:mt-[35px]">
+                    <div className="form-group mt-2 md:mt-[35px]">
                         <PrimaryButton type="submit" className="w-full py-3 bg-[#FEEAA9] border-[#FEEAA9] rounded-[4px] text-black hover:text-black" disabled={processing}>
                             {processing?(
                                 <>Processing...</>
