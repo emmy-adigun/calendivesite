@@ -96,7 +96,7 @@ const LemonadeDiariesData = ()=>{
             </div>
             
             <form onSubmit={submitForm} method="post" className="block mt-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 px-5 md:px-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 px-5 md:px-10">
                     <div className="form-group">
                         <p className="flex">
                             <Label htmlFor="name">Full Name</Label><span className="text-red-500">*</span>
