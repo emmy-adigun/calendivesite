@@ -86,7 +86,7 @@ const LemonadeDiariesData = ()=>{
     return(
         <div className="w-full">
             <div className="w-full bg-[#FEEAA9] text-center py-10">
-                <h1 className="text-[40px] text-[52px] leading-[60px] font-serif">Lemonade <br/> Diaries X Lohn</h1>
+                <h1 className="text-[45px] md:text-[52px] leading-[60px] font-serif">Lemonade <br/> Diaries X Lohn</h1>
                 <h5 className="text-[21px] mt-3">Event RSVP</h5>
             </div>
             <div className="w-full px-5 md:px-10 pt-10">
@@ -96,8 +96,8 @@ const LemonadeDiariesData = ()=>{
             </div>
             
             <form onSubmit={submitForm} method="post" className="block mt-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 px-5 md:px-10">
-                    <div className="form-group mt-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 px-5 md:px-10">
+                    <div className="form-group">
                         <p className="flex">
                             <Label htmlFor="name">Full Name</Label><span className="text-red-500">*</span>
                         </p>
@@ -158,7 +158,7 @@ const LemonadeDiariesData = ()=>{
                             onChange={(event: { target: { value: SetStateAction<string>; }; }) => sethearAboutUs(event.target.value)}
                         /> 
                     </div>
-                    <div className="form-group mt-2 md:mt-[35px]">
+                    <div className="form-group mt-2 md:mt-[30px]">
                         <PrimaryButton type="submit" className="w-full py-3 bg-[#FEEAA9] border-[#FEEAA9] rounded-[4px] text-black hover:text-black" disabled={processing}>
                             {processing?(
                                 <>Processing...</>
