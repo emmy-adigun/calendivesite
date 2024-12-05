@@ -124,33 +124,33 @@ const HomeData = () => {
                     <div className="w-full grid md:grid-cols-3 gap-[24px]">
                         <div className="bg-[#E9F1F9] px-10 py-[30px]">
                             <Image src={hr} alt="spa/beauty" className="mx-auto w-[20%]" />
-                            <p className="text-center text-[14px] md:text-[18px] leading-[17px] md:leading-[24px] font-medium mt-[60px]">HR Interview Scheduling</p>
+                            <p className="text-center text-[14px] md:text-[18px] leading-[17px] md:leading-[24px] font-medium mt-[30px]">HR Interview Scheduling</p>
                         </div>
                         
                         <div className="bg-[#E9F1F9] px-10 py-[30px]">
                             <Image src={consulting} alt="spa/beauty" className="mx-auto w-[20%]" />
-                            <p className="text-center text-[14px] md:text-[18px] leading-[17px] md:leading-[24px] font-medium mt-[60px]">Consulting Services</p>
+                            <p className="text-center text-[14px] md:text-[18px] leading-[17px] md:leading-[24px] font-medium mt-[30px]">Consulting Services</p>
                         </div>
                         <div className="bg-[#E9F1F9] px-10 py-[30px]">
                             <Image src={event} alt="spa/beauty" className="mx-auto w-[20%]" />
-                            <p className="text-center text-[14px] md:text-[18px] leading-[17px] md:leading-[24px] font-medium mt-[60px]">Event Registrations</p>
+                            <p className="text-center text-[14px] md:text-[18px] leading-[17px] md:leading-[24px] font-medium mt-[30px]">Event Registrations</p>
                         </div>
                     </div>
                     <div className="w-full grid md:grid-cols-2 gap-[24px] justify-center mt-4 mx-auto">
                         <div className="bg-[#E9F1F9] px-10 py-[30px]">
                             <Image src={spa} alt="spa/beauty" className="mx-auto w-[11%]" />
-                            <p className="text-center text-[14px] md:text-[18px] leading-[17px] md:leading-[24px] font-medium mt-[60px]">Spa/Beauty Salon Appointments Bookings </p>
+                            <p className="text-center text-[14px] md:text-[18px] leading-[17px] md:leading-[24px] font-medium mt-[30px]">Spa/Beauty Salon Appointments Bookings </p>
                         </div>
                         <div className="bg-[#E9F1F9] px-10 py-[30px]">
                             <Image src={training} alt="spa/beauty" className="mx-auto w-[11%]"/>
-                            <p className="text-center text-[14px] md:text-[18px] leading-[17px] md:leading-[24px] font-medium mt-[60px]">Training Calendar for EdTech Plaforms</p>
+                            <p className="text-center text-[14px] md:text-[18px] leading-[17px] md:leading-[24px] font-medium mt-[30px]">Training Calendar for EdTech Plaforms</p>
                         </div>
                     </div>
                 </div>
             </section>
             <section className="w-full bg-[#07101B] pt-[100px] pb-20">
                 <div  className="w-[90%] md:w-[67% mx-auto">
-                    <h2 className="font-semibold text-[18px] md:text-[40px] leading-[24px] md:leading-[48px] text-center text-white">Made for the Tomorrow, Available Today.<br/>Talk to our Consultants</h2>
+                    <h2 className="font-semibold text-[18px] md:text-[40px] leading-[24px] md:leading-[48px] text-center text-white">Made for the Tomorrow, <span className="block md:inline">Available Today.</span> <span className="inline md:block">Talk to our Consultants</span></h2>
                     <ConsultationListData/>
                 </div>
                 <div className="text-center mt-20">
