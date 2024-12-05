@@ -1,5 +1,5 @@
 import axios from '@/lib/axios'
-import { AuthProps, candidateInfoProp, contactInfoProp, djLatsEventRegProp, getCountriesProps, getInfoDataProps, getScheduledEventDataProps, getTrainingCourseCategoryProps, getTrainingTypeProps } from './types'
+import { AuthProps, candidateInfoProp, contactInfoProp, djLatsEventRegProp, getCountriesProps, getInfoDataProps, getScheduledEventDataProps, getTrainingCourseCategoryProps, getTrainingTypeProps, lemonadeDairiesRegProps } from './types'
 
 export const useGeneralQueries =  ({ middleware, redirectIfAuthenticated } : AuthProps = {}) => {
     const csrf = () => axios.get('/sanctum/csrf-cookie')
@@ -266,6 +266,49 @@ export const useGeneralQueries =  ({ middleware, redirectIfAuthenticated } : Aut
             })
     }
 
+    const registerLemonadeDiariesEvents = async({setErrors, setStatus, setData, ...props} : lemonadeDairiesRegProps)  => {
+        await csrf();
+        setErrors({
+            msg: '',
+            email: [],
+            name: [],
+            phone: [],
+            hearAboutUs: [],
+            socialHandle: [],
+        })
+        axios.post('/api/lemonade-diaries-event-registration', props)
+            .then((response)=>{
+                setStatus(response.status);
+                setData({
+                    data: response.data.data,
+                    message: response.data.message,
+                    status: response.data.status
+                });
+            })
+            .catch(error=>{
+                setStatus(error.response.status)
+                if (error.response.status === 422) {
+                    setErrors({
+                        msg: error.response.data.message, 
+                        email: error.response.data.errors?.email || [],
+                        name: error.response.data.errors?.name || [],
+                        phone: error.response.data.errors?.phone ||[],
+                        hearAboutUs: error.response.data.errors?.hearAboutUs || [],
+                        socialHandle: error.response.data.errors?.socialHandle || []
+                    });
+                }else{
+                    setErrors({
+                        msg: 'An error occurred. Please contact the administrator or technical team.',
+                        email: [],
+                        name: [],
+                        phone: [],
+                        hearAboutUs: [],
+                        socialHandle: []
+                    });
+                }
+            })
+    }
+
 
    
 
@@ -279,7 +322,8 @@ export const useGeneralQueries =  ({ middleware, redirectIfAuthenticated } : Aut
         waitListMethod,
         getScheduledEventMethod,
         sendCandidateAvailabilityMethod,
-        registerForDjLatsEvents
+        registerForDjLatsEvents,
+        registerLemonadeDiariesEvents
     }
 }
 

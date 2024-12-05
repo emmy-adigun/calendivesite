@@ -156,3 +156,23 @@ export interface djLatsEventRegProp{
     setErrors: (errors: djLatsEventRegErrorType) => void;
     setData: (data: successDataType) => void;
 }
+
+export interface lemonadeDairiesErrorType{
+    msg: string;
+    email: string[];
+    name: string[];
+    phone: string[];
+    hearAboutUs: string[];
+    socialHandle: string[];
+}
+
+export interface lemonadeDairiesRegProps{
+    email:string;
+    name: string;
+    phone: string;
+    hearAboutUs: string;
+    socialHandle: string;
+    setStatus : (status : number) => void;
+    setErrors: (errors: lemonadeDairiesErrorType) => void;
+    setData: (data: successDataType) => void;
+}
