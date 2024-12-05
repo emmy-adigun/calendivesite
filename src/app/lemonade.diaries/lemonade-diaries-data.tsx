@@ -90,7 +90,7 @@ const LemonadeDiariesData = ()=>{
                 <h5 className="text-[21px] mt-3">Event RSVP</h5>
             </div>
             <div className="w-full px-5 md:px-10 pt-10">
-                <h3 className="font-semibold text-[20px]">Follow us on <FontAwesomeIcon icon={faInstagram} className="bg-black text-white p-1 rounded-full"/></h3>
+                <h3 className="font-semibold text-[20px]">Follow us on <FontAwesomeIcon icon={faInstagram} className="bg-black text-white px-1 py-[2.5px] rounded-full text-[14px]"/></h3>
                 <Link href="https://www.instagram.com/latsthedj?igsh=bWFuZHpvaGx4eDYw" target="_blank" className="text-[16px]">@latsthedj</Link><br/>
                 <Link href="https://www.instagram.com/lemonade.diaries?igsh=MXBjd2N2b3pkbnV3" target="_blank" className="text-[16px]">@lemonade.diaries</Link>
             </div>
@@ -148,7 +148,7 @@ const LemonadeDiariesData = ()=>{
                     </div>
                     <div className="form-group">
                         <p className="flex">
-                            <Label htmlFor="hearAboutUs">How did you hear about Lemonade Diaries X Lohn</Label>
+                            <Label htmlFor="hearAboutUs">How did you hear about Lemonade Diaries X Lohn?</Label>
                         </p>
                         <Input
                             id="hearAboutUs"
