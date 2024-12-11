@@ -187,8 +187,8 @@ const LemonadeDiariesData = ()=>{
                 </div>
             ):(
                 <div className="w-full md:h-[100vh] bg-[#34461D] text-center text-red-100 px-3 md:px-0">
-                    <div className="pt-20 pb-10">
-                        <h1 className="text-[40px]">Lohn X <span style={AlluraFont.style}>Lemonade Diaries</span></h1>
+                    <div className="pt-5 md:pt-20 pb-10">
+                        <h1 className="text-[30px] md:text-[40px]">Lohn X <span style={AlluraFont.style}>Lemonade Diaries</span></h1>
                     </div>
                     <div>
                         <h4>PRESENTS</h4>
@@ -203,7 +203,7 @@ const LemonadeDiariesData = ()=>{
                         <p className="font-medium">Lohn Store: 273b Patience Coker Str,</p>
                         <p className="font-medium">Victoria Island. Lagos</p>
                     </div>
-                    <div className="py-20 md:pt-10 md:pb-20">
+                    <div className="py-10 md:pt-10 md:pb-20">
                         <p>Dress Code: Chic</p>
                     </div>
                     <div className="grow md:hidden"> 
