@@ -17,7 +17,9 @@ import Link from "next/link";
 const EventSchedulesData = ({params}:any) => {
     const { sendCandidateAvailabilityMethod } = useGeneralQueries({ middleware: 'guest' });
     const scheduledEvent = ScheduledEventData(params.link);
-    const scheduleData = scheduledEvent?.schedule_dates
+    const scheduleData = scheduledEvent?.schedule_dates;
+    const scheduleDate = scheduledEvent?.dates;
+    console.log(scheduleDate);
     const options: never[] = [];
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -139,7 +141,14 @@ const EventSchedulesData = ({params}:any) => {
                             <div className="md:flex gap-20">
                                 <div className="grow border-r">
                                     <p>{scheduledEvent.name}</p>
-                                    <FontAwesomeIcon icon={faClock}/>  <span>1hr</span>
+                                    <FontAwesomeIcon icon={faClock}/>  
+                                    <span>{scheduledEvent.time_interval==60?
+                                        (
+                                            <> 1hr</>
+                                        ):(
+                                            <> {scheduledEvent.time_interval} Minutes</>
+                                        )}
+                                    </span>
                                 </div>
                                 <div className="md:grid md:grid-cols-2 gap-20">
                                     <div className="">
@@ -149,9 +158,8 @@ const EventSchedulesData = ({params}:any) => {
                                                 config={{
                                                     settings: {
                                                         range: {
-                                                            disablePast: true,
-                                                            min: startDate,
-                                                            max: endDate,
+                                                            disableAllDays: true,
+                                                            enabled: scheduleDate,
                                                         },
                                                         selected: {
                                                             dates: [selectedDate],
@@ -196,7 +204,7 @@ const EventSchedulesData = ({params}:any) => {
                                                 </div>
                                             ))
                                         ) : (
-                                            <p>No available times for the selected date.</p>
+                                            <p>Please select your availability date.</p>
                                         )}
                     
                                         <div className="mt-5">
