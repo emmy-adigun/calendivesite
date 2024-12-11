@@ -24,7 +24,7 @@ const LemonadeDiariesData = ()=>{
     const [hearAboutUs, sethearAboutUs] = useState('');
     const [processing, setProcessing] = useState(false);
     const [status, setStatus] = useState(0);
-    const registered = localStorage.getItem('registered')??'false'
+    const registered = localStorage.getItem('registered')??'true'
     const [errors, setErrors] = useState<lemonadeDairiesErrorType>({
         msg: '',
         name: [],
@@ -187,7 +187,7 @@ const LemonadeDiariesData = ()=>{
                 </div>
             ):(
                 <div className="w-full md:h-[100vh] bg-[#34461D] text-center text-red-100 px-3 md:px-0">
-                    <div className="pt-5 md:pt-20 pb-10">
+                    <div className="py-5 md:pt-20 md:pb-10">
                         <h1 className="text-[30px] md:text-[40px]">Lohn X <span style={AlluraFont.style}>Lemonade Diaries</span></h1>
                     </div>
                     <div>
@@ -195,7 +195,7 @@ const LemonadeDiariesData = ()=>{
                         <h1 className="text-[70px] pt-2 pb-3 text-red-100 font-serif">APERITIF</h1>
                         <p>AN EVENING OF MUSIC, CULTURE AND CONNECTION</p>
                     </div>
-                    <div  className="py-10">
+                    <div  className="py-5 md:py-10">
                         <p className="text-[30px]" style={AlluraFont.style}>Thursday, Dec 12</p>
                     </div>
                     <div className="">
@@ -203,21 +203,21 @@ const LemonadeDiariesData = ()=>{
                         <p className="font-medium">Lohn Store: 273b Patience Coker Str,</p>
                         <p className="font-medium">Victoria Island. Lagos</p>
                     </div>
-                    <div className="py-10 md:pt-10 md:pb-20">
+                    <div className="py-5 md:pt-10 md:pb-20">
                         <p>Dress Code: Chic</p>
                     </div>
                     <div className="grow md:hidden"> 
                         <p className="font-light text-center text-sm md:text-[16px] mb-[-70px] md:mb-0 z-10">RSVP your attendance <button onClick={()=>registerAgain()} className="underline">here</button></p>
                     </div>
                     <div className="flex bottom-0">
-                        <div className="flex-none mt-10 md:mt-[-140px] ml-[-75px]">
-                            <Image src={glass2} alt="glass 1" className="w-full h-[25vh] md:h-[40vh]"/>
+                        <div className="flex-none mb-[-30px] md:mb-0 mt-10 md:mt-[-140px] ml-[-75px]">
+                            <Image src={glass2} alt="glass 1" className="w-full h-[25vh] md:h-[40vh] mb-[-35px] md:mb-0"/>
                         </div>
                         <div className="grow"> 
                             <p className="font-light text-center text-sm md:text-[16px] hidden md:block">RSVP your attendance <button onClick={()=>registerAgain()} className="underline">here</button></p>
                         </div>
                         <div className="flex-none mt-10 md:mt-[-140px] mr-[-60px]">
-                            <Image src={glass1} alt="glass 1" className="w-full h-[25vh] md:h-[40vh]"/>
+                            <Image src={glass1} alt="glass 1" className="w-full h-[25vh] md:h-[40vh] mb-[-35px] md:mb-0"/>
                         </div>
                     </div>
                 </div>
