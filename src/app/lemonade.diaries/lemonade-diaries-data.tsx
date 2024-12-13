@@ -24,6 +24,14 @@ const LemonadeDiariesData = ()=>{
     const [hearAboutUs, sethearAboutUs] = useState('');
     const [processing, setProcessing] = useState(false);
     const [status, setStatus] = useState(0);
+    const registered = localStorage.getItem('registered')??'false'
+    
+
+    const registerAgain = () => {
+        localStorage.setItem('registered', 'false');
+        setTimeout(() => {window.location.reload();}, 1000);
+    }
+    
     const [errors, setErrors] = useState<lemonadeDairiesErrorType>({
         msg: '',
         name: [],
@@ -62,10 +70,8 @@ const LemonadeDiariesData = ()=>{
     useEffect(() => {
         if (status === 200) {
             setProcessing(false);
-            toast.success(data.message, {
-                position: toast.POSITION.TOP_RIGHT,
-            });
-            setTimeout(() => {window.location.reload();}, 3000);
+            localStorage.setItem('registered', 'true');
+            setTimeout(() => {window.location.reload();}, 1000);
         } else if (status === 422 || status === 404) {
             if (errors) {
                 toast.error(errors.msg, {
@@ -85,97 +91,107 @@ const LemonadeDiariesData = ()=>{
    
     
     return( 
-        <div className="w-full">
-            <div className="w-full">
-                <div className="w-full bg-[#FEEAA9] text-center py-10">
-                    <h1 className="text-[60px] md:text-[64px] leading-[60px] font-serif">Lemonade <br/> Diaries</h1>
-                    <h5 className="text-[21px] mt-3">Event RSVP</h5>
-                </div>
-                <div className="w-full md:w-[50%] mx-auto px-5 md:px-10 pt-10 md:flex">
-                    <h3 className="font-semibold text-[20px]">Follow us on <FontAwesomeIcon icon={faInstagram} className="bg-black text-white px-1 py-[2.5px] rounded-full text-[14px]"/></h3>
-                    <Link href="https://www.instagram.com/latsthedj?igsh=bWFuZHpvaGx4eDYw" target="_blank" className="text-[16px] mx-0 md:mx-10 mt-0 md:mt-1">@latsthedj</Link><br/>
-                    <Link href="https://www.instagram.com/lemonade.diaries?igsh=MXBjd2N2b3pkbnV3" target="_blank" className="text-[16px] mt-0 md:mt-1">@lemonade.diaries</Link>
-                </div>
-                
-                <form onSubmit={submitForm} method="post" className="block mt-5">
-                    <div className="grid grid-cols-1 gap-4 md:gap-10 px-5 md:px-10 w-full md:w-[50%] mx-auto">
-                        <div className="form-group">
-                            <p className="flex">
-                                <Label htmlFor="name">Full Name</Label><span className="text-red-500">*</span>
-                            </p>
-                            <Input
-                                id="name"
-                                type="text"
-                                value={name}
-                                className={`block mt-1 w-full px-3 bg-[#ECECEC] ${errors.name.length > 0 ? 'border-red-500' : ''}`}
-                                onChange={(event: { target: { value: SetStateAction<string>; }; }) => setName(event.target.value)}
-                            /> 
+        <>
+            {registered=='false' ? (
+                <div className="w-full">
+                    <div className="w-full">
+                        <div className="w-full bg-[#FEEAA9] text-center py-10">
+                            <h1 className="text-[60px] md:text-[64px] leading-[60px] font-serif">Lemonade <br/> Diaries</h1>
+                            <h5 className="text-[21px] mt-3">Event RSVP</h5>
                         </div>
-                        <div className="form-group">
-                            <p className="flex">
-                                <Label htmlFor="email">Email</Label><span className="text-red-500">*</span>
-                            </p>
-                            <Input
-                                id="email"
-                                type="email"
-                                value={email}
-                                className={`block mt-1 w-full px-3 bg-[#ECECEC] ${errors.email.length > 0 ? 'border-red-500' : ''}`}
-                                onChange={(event: { target: { value: SetStateAction<string>; }; }) => setEmail(event.target.value)}
-                            /> 
-                        </div>
-                        <div className="form-group">
-                            <p className="flex">
-                                <Label htmlFor="phone">Mobile Number (Whatsapp preferred)</Label><span className="text-red-500">*</span>
-                            </p>
-                            <Input
-                                id="phone"
-                                type="phone"
-                                value={phone}
-                                className={`block mt-1 w-full px-3  bg-[#ECECEC] ${errors.phone.length > 0 ? 'border-red-500' : ''}`}
-                                onChange={(event: { target: { value: SetStateAction<string>; }; }) => setPhone(event.target.value)}
-                            /> 
+                        <div className="w-full md:w-[50%] mx-auto px-5 md:px-10 pt-10 md:flex">
+                            <h3 className="font-semibold text-[20px]">Follow us on <FontAwesomeIcon icon={faInstagram} className="bg-black text-white px-1 py-[2.5px] rounded-full text-[14px]"/></h3>
+                            <Link href="https://www.instagram.com/latsthedj?igsh=bWFuZHpvaGx4eDYw" target="_blank" className="text-[16px] mx-0 md:mx-10 mt-0 md:mt-1">@latsthedj</Link><br/>
+                            <Link href="https://www.instagram.com/lemonade.diaries?igsh=MXBjd2N2b3pkbnV3" target="_blank" className="text-[16px] mt-0 md:mt-1">@lemonade.diaries</Link>
                         </div>
                         
-                        <div className="form-group">
-                            <p className="flex">
-                                <Label htmlFor="phone">Instagram / Tiktok Handle</Label>
-                            </p>
-                            <Input
-                                id="socialHandle"
-                                type="text"
-                                value={socialHandle}
-                                className={`block mt-1 w-full px-3  bg-[#ECECEC] ${errors.socialHandle.length > 0 ? 'border-red-500' : ''}`}
-                                onChange={(event: { target: { value: SetStateAction<string>; }; }) => setSocialHandle(event.target.value)}
-                            /> 
-                        </div>
-                        <div className="form-group">
-                            <p className="flex">
-                                <Label htmlFor="hearAboutUs">How did you hear about Lemonade Diaries X Lohn?</Label>
-                            </p>
-                            <Input
-                                id="hearAboutUs"
-                                type="text"
-                                value={hearAboutUs}
-                                className={`block mt-1 w-full px-3  bg-[#ECECEC] ${errors.hearAboutUs.length > 0 ? 'border-red-500' : ''}`}
-                                onChange={(event: { target: { value: SetStateAction<string>; }; }) => sethearAboutUs(event.target.value)}
-                            /> 
-                        </div>
-                        <div className="form-group mt-2 md:mt-[30px]">
-                            <PrimaryButton type="submit" className="w-full py-3 bg-[#FEEAA9] border-[#FEEAA9] rounded-[4px] text-black hover:text-black" disabled={processing}>
-                                {processing?(
-                                    <>Processing...</>
-                                ):(
-                                    <>Register</>
-                                )}
-                            </PrimaryButton>
-                        </div>
+                        <form onSubmit={submitForm} method="post" className="block mt-5">
+                            <div className="grid grid-cols-1 gap-4 md:gap-10 px-5 md:px-10 w-full md:w-[50%] mx-auto">
+                                <div className="form-group">
+                                    <p className="flex">
+                                        <Label htmlFor="name">Full Name</Label><span className="text-red-500">*</span>
+                                    </p>
+                                    <Input
+                                        id="name"
+                                        type="text"
+                                        value={name}
+                                        className={`block mt-1 w-full px-3 bg-[#ECECEC] ${errors.name.length > 0 ? 'border-red-500' : ''}`}
+                                        onChange={(event: { target: { value: SetStateAction<string>; }; }) => setName(event.target.value)}
+                                    /> 
+                                </div>
+                                <div className="form-group">
+                                    <p className="flex">
+                                        <Label htmlFor="email">Email</Label><span className="text-red-500">*</span>
+                                    </p>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        value={email}
+                                        className={`block mt-1 w-full px-3 bg-[#ECECEC] ${errors.email.length > 0 ? 'border-red-500' : ''}`}
+                                        onChange={(event: { target: { value: SetStateAction<string>; }; }) => setEmail(event.target.value)}
+                                    /> 
+                                </div>
+                                <div className="form-group">
+                                    <p className="flex">
+                                        <Label htmlFor="phone">Mobile Number (Whatsapp preferred)</Label><span className="text-red-500">*</span>
+                                    </p>
+                                    <Input
+                                        id="phone"
+                                        type="phone"
+                                        value={phone}
+                                        className={`block mt-1 w-full px-3  bg-[#ECECEC] ${errors.phone.length > 0 ? 'border-red-500' : ''}`}
+                                        onChange={(event: { target: { value: SetStateAction<string>; }; }) => setPhone(event.target.value)}
+                                    /> 
+                                </div>
+                                
+                                <div className="form-group">
+                                    <p className="flex">
+                                        <Label htmlFor="phone">Instagram / Tiktok Handle</Label>
+                                    </p>
+                                    <Input
+                                        id="socialHandle"
+                                        type="text"
+                                        value={socialHandle}
+                                        className={`block mt-1 w-full px-3  bg-[#ECECEC] ${errors.socialHandle.length > 0 ? 'border-red-500' : ''}`}
+                                        onChange={(event: { target: { value: SetStateAction<string>; }; }) => setSocialHandle(event.target.value)}
+                                    /> 
+                                </div>
+                                <div className="form-group">
+                                    <p className="flex">
+                                        <Label htmlFor="hearAboutUs">How did you hear about Lemonade Diaries X Lohn?</Label>
+                                    </p>
+                                    <Input
+                                        id="hearAboutUs"
+                                        type="text"
+                                        value={hearAboutUs}
+                                        className={`block mt-1 w-full px-3  bg-[#ECECEC] ${errors.hearAboutUs.length > 0 ? 'border-red-500' : ''}`}
+                                        onChange={(event: { target: { value: SetStateAction<string>; }; }) => sethearAboutUs(event.target.value)}
+                                    /> 
+                                </div>
+                                <div className="form-group mt-2 md:mt-[30px]">
+                                    <PrimaryButton type="submit" className="w-full py-3 bg-[#FEEAA9] border-[#FEEAA9] rounded-[4px] text-black hover:text-black" disabled={processing}>
+                                        {processing?(
+                                            <>Processing...</>
+                                        ):(
+                                            <>Register</>
+                                        )}
+                                    </PrimaryButton>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-            <div className={`w-full py-10`}>
-                <p className="text-center text-[16px] font-normal">&copy; 2024 Calendive. All Rights Reserved</p>
-            </div>
-        </div>
+                    <div className={`w-full py-10`}>
+                        <p className="text-center text-[16px] font-normal">&copy; 2024 Calendive. All Rights Reserved</p>
+                    </div>
+                </div>
+            ):(
+                <div className="w-full pt-20">
+                    <div className="w-full md:w-[70%] mx-auto bg-green-100 text-green-900 text-center p-5 md:p-10">
+                        <p>Thank you for rsvping! <br /> More information would be sent to your email.</p>
+                    </div>
+                </div>
+            )}
+        </>
     )
 }
 
