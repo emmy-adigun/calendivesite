@@ -88,7 +88,7 @@ const LemonadeDiariesData = ()=>{
         <div className="w-full">
             <div className="w-full">
                 <div className="w-full bg-[#FEEAA9] text-center py-10">
-                    <h1 className="text-[45px] md:text-[52px] leading-[60px] font-serif">Lemonade <br/> Diaries X Lohn</h1>
+                    <h1 className="text-[60px] md:text-[64px] leading-[60px] font-serif">Lemonade <br/> Diaries</h1>
                     <h5 className="text-[21px] mt-3">Event RSVP</h5>
                 </div>
                 <div className="w-full md:w-[50%] mx-auto px-5 md:px-10 pt-10 md:flex">
