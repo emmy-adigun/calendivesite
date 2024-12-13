@@ -158,7 +158,7 @@ const LemonadeDiariesData = ()=>{
                                 </div>
                                 <div className="form-group">
                                     <p className="flex">
-                                        <Label htmlFor="hearAboutUs">How did you hear about Lemonade Diaries X Lohn?</Label>
+                                        <Label htmlFor="hearAboutUs">How did you hear about Lemonade Diaries?</Label>
                                     </p>
                                     <Input
                                         id="hearAboutUs"
