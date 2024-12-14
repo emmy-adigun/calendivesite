@@ -119,7 +119,7 @@ const LemonadeDiariesData = ()=>{
                                         id="name"
                                         type="text"
                                         value={name}
-                                        className={`block mt-1 w-full px-3 bg-[#ECECEC] ${errors.name.length > 0 ? 'border-red-500' : ''}`}
+                                        className={`block mt-1 w-full px-3 bg-[#ECECEC] border-[#ECECEC] ${errors.name.length > 0 ? 'border-red-500' : ''}`}
                                         onChange={(event: { target: { value: SetStateAction<string>; }; }) => setName(event.target.value)}
                                     /> 
                                 </div>
@@ -146,14 +146,14 @@ const LemonadeDiariesData = ()=>{
                                             onChange={(selectedOptionValue) => setMobileCode(selectedOptionValue)} 
                                             previousOption={mobile_code} 
                                             placeholder={""} 
-                                            className={"w-[20%] flex-none bg-[#ECECEC] py-2 mt-1 border-0 rounded-tl-md rounded-bl-md"}
+                                            className={"flex-none bg-[#ECECEC] py-2 mt-1 rounded-tl-md rounded-bl-md"}
                                             required={true}
                                         />
                                         <Input
                                             id="phone"
                                             type="phone"
                                             value={phone}
-                                            className={`grow block mt-1 w-full px-3  bg-[#ECECEC] rounded-tl-[0px] rounded-bl-[0px] ${errors.phone.length > 0 ? 'border-red-500' : ''}`}
+                                            className={`grow block mt-1 w-full px-3  bg-[#ECECEC] rounded-tl-[0px] border-l-[#FFFFFF] rounded-bl-[0px] ${errors.phone.length > 0 ? 'border-red-500' : ''}`}
                                             onChange={(event: { target: { value: SetStateAction<string>; }; }) => setPhone(event.target.value)}
                                             required
                                         /> 
