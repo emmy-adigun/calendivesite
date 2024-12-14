@@ -97,7 +97,7 @@ const TraingCalendarData = () => {
                                             onChange={(selectedOptionValue) => setTrainingType(selectedOptionValue)}
                                             previousOption={""}
                                             placeholder="Type"
-                                            className=""               
+                                            className=""              
                                         />
                                     </div>
                                     <div className="form-group m-3  grow">
