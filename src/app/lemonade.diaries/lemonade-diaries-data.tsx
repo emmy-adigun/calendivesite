@@ -13,12 +13,14 @@ import glass1 from '../../../public/images/glass1.png';
 import glass2 from '../../../public/images/glass2.png';
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MobileCodeSelectOptionField from "@/components/FormFields/MobileCodeSelectOptionField";
 
 
 const LemonadeDiariesData = ()=>{
     const { registerLemonadeDiariesEvents } = useGeneralQueries({ middleware: 'guest' });
     const [name,  setName] = useState('');
     const [email, setEmail] = useState('');
+    const [mobile_code,  setMobileCode] = useState('234');
     const [phone, setPhone] = useState('');
     const [socialHandle, setSocialHandle] = useState('');
     const [hearAboutUs, sethearAboutUs] = useState('');
@@ -36,6 +38,7 @@ const LemonadeDiariesData = ()=>{
         msg: '',
         name: [],
         email: [],
+        mobile_code: [],
         phone: [],
         hearAboutUs: [],
         socialHandle: []
@@ -55,6 +58,7 @@ const LemonadeDiariesData = ()=>{
             const register = await registerLemonadeDiariesEvents({
                 name,
                 email,
+                mobile_code,
                 phone,
                 hearAboutUs,
                 socialHandle,
@@ -135,13 +139,25 @@ const LemonadeDiariesData = ()=>{
                                     <p className="flex">
                                         <Label htmlFor="phone">Mobile Number (Whatsapp preferred)</Label><span className="text-red-500">*</span>
                                     </p>
-                                    <Input
-                                        id="phone"
-                                        type="phone"
-                                        value={phone}
-                                        className={`block mt-1 w-full px-3  bg-[#ECECEC] ${errors.phone.length > 0 ? 'border-red-500' : ''}`}
-                                        onChange={(event: { target: { value: SetStateAction<string>; }; }) => setPhone(event.target.value)}
-                                    /> 
+                                    <div className="flex">
+                                        <MobileCodeSelectOptionField 
+                                            name={"mobile_code"} 
+                                            id={"mobile_code"} 
+                                            onChange={(selectedOptionValue) => setMobileCode(selectedOptionValue)} 
+                                            previousOption={mobile_code} 
+                                            placeholder={""} 
+                                            className={"w-[20%] flex-none bg-[#ECECEC] py-2 mt-1 border-0 rounded-tl-md rounded-bl-md"}
+                                            required={true}
+                                        />
+                                        <Input
+                                            id="phone"
+                                            type="phone"
+                                            value={phone}
+                                            className={`grow block mt-1 w-full px-3  bg-[#ECECEC] rounded-tl-[0px] rounded-bl-[0px] ${errors.phone.length > 0 ? 'border-red-500' : ''}`}
+                                            onChange={(event: { target: { value: SetStateAction<string>; }; }) => setPhone(event.target.value)}
+                                            required
+                                        /> 
+                                    </div>
                                 </div>
                                 
                                 <div className="form-group">

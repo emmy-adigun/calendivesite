@@ -23,7 +23,17 @@ export interface SelectOptionFieldProps{
     options:any;
     previousOption:any
     placeholder:string;
+    className:string;
+}
+
+export interface MobileSelectOptionFieldProps{
+    name:string;
+    id:any;
+    onChange: (selectedOptionValue: string) => void; 
+    previousOption:any
+    placeholder:string;
     className:string
+    required: boolean;
 }
 
 export interface successDataType{
@@ -161,6 +171,7 @@ export interface lemonadeDairiesErrorType{
     msg: string;
     email: string[];
     name: string[];
+    mobile_code: string[],
     phone: string[];
     hearAboutUs: string[];
     socialHandle: string[];
@@ -169,6 +180,7 @@ export interface lemonadeDairiesErrorType{
 export interface lemonadeDairiesRegProps{
     email:string;
     name: string;
+    mobile_code: string;
     phone: string;
     hearAboutUs: string;
     socialHandle: string;

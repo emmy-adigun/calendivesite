@@ -272,6 +272,7 @@ export const useGeneralQueries =  ({ middleware, redirectIfAuthenticated } : Aut
             msg: '',
             email: [],
             name: [],
+            mobile_code: [],
             phone: [],
             hearAboutUs: [],
             socialHandle: [],
@@ -292,6 +293,7 @@ export const useGeneralQueries =  ({ middleware, redirectIfAuthenticated } : Aut
                         msg: error.response.data.message, 
                         email: error.response.data.errors?.email || [],
                         name: error.response.data.errors?.name || [],
+                        mobile_code: error.response.data.errors?.mobile_code || [],
                         phone: error.response.data.errors?.phone ||[],
                         hearAboutUs: error.response.data.errors?.hearAboutUs || [],
                         socialHandle: error.response.data.errors?.socialHandle || []
@@ -301,6 +303,7 @@ export const useGeneralQueries =  ({ middleware, redirectIfAuthenticated } : Aut
                         msg: 'An error occurred. Please contact the administrator or technical team.',
                         email: [],
                         name: [],
+                        mobile_code: [],
                         phone: [],
                         hearAboutUs: [],
                         socialHandle: []
