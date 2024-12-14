@@ -24,16 +24,29 @@ const MobileCodeSelectOptionField = ({name, id, onChange, previousOption, placeh
             alignItems: 'center',
             justifyContent: 'flex-start',
             height: '100px !important',
-            border: 'none'
+            cursor: 'pointer'
         }),
-        control: (provided: any) => ({
+        control: (provided: any, state:any) => ({
             ...provided,
-            backgroundColor: className,
+            backgroundColor: 'transparent',
+            borderColor: '#ECECEC',
+            boxShadow: 'none',
+            '&:hover': {
+              borderColor: '#ECECEC',
+            },
         }),
 
+        indicatorSeparator: (provided: any) => ({
+            display: 'none', // Hides the separator
+        }),
+        dropdownIndicator: (provided: any) => ({
+            ...provided,
+            color: 'black',
+            marginLeft: '-5px'
+        }),
         placeholder: (provided: any) => ({
             ...provided,
-            color: className ? 'black' : ''
+            color: className ? 'black' : '',
         }),
     };
 
