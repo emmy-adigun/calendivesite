@@ -187,7 +187,7 @@ const LemonadeDiariesData = ()=>{
             ):(
                 <div className="w-full pt-20 ">
                     <div className="w-full md:w-[70%] mx-auto bg-green-100 text-green-900 text-center p-5 md:p-10">
-                        <p>Thank you for rsvping! <br /> More information would be sent to your email.</p>
+                        <p>Thank you for RSVP’ing! <br /> Additional details will be sent to your email shortly.</p>
                     </div>
                     <div className={`w-full py-10 fixed bottom-0`}>
                         <p className="text-center text-[16px] font-normal">&copy; 2024 Calendive. All Rights Reserved</p>
