@@ -126,7 +126,7 @@ const ElysiumFoodAndBeverageData = () => {
                 </div>
             </div>
             <div className={`w-full py-20`}>
-                <p className="text-center text-[16px] font-normal">&copy; 2024 Calendive. <br/>All Rights Reserved</p>
+                <p className="text-center text-[13px] font-normal">&copy; 2024 Calendive. All Rights Reserved</p>
             </div>
         </div>
     );
