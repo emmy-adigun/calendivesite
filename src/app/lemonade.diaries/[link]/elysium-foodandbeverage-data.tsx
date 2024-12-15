@@ -7,12 +7,12 @@ const ElysiumFoodAndBeverageData = () => {
     return (
         <div className="relative h-auto bg-[#34461D] text-red-100">
             <div className="fixed bottom-0 left-0 w-auto z-10">
-                <Image src={glass2} alt="Left Hand Holding Glass"width={110}height={200}priority/>
+                <Image src={glass2} alt="Left Hand Holding Glass"width={50}height={100}priority/>
             </div>
 
             
             <div className="fixed bottom-0 right-0 w-auto z-10">
-                <Image src={glass1} alt="Right Hand Holding Glass" width={150} height={200} priority/>
+                <Image src={glass1} alt="Right Hand Holding Glass" width={70} height={100} priority/>
             </div>
 
             <div className="container mx-auto py-10 uppercase text-center">
