@@ -30,7 +30,7 @@ export default function GuestLayout({ children}:LayoutProps){
                             <main  className="pt-[80px] w-full">
                                 {children}
                             </main>
-                            {/* <Footer/> */}
+                             <Footer/>
                         </div>
                     </section>
                 )

@@ -91,6 +91,10 @@
     cursor: pointer; 
     font-size: 16px;  
   }
+
+  button.with-border {
+    border: 1px solid #0A70E0;
+  }
   
   .container {
     max-width: 88% !important;
