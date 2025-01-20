@@ -26,7 +26,7 @@ export default function Navigation(){
 
     return (
         <header>
-            <nav className={`w-full min-h-[80px] fixed top-0 z-10 border-b-[0.5px] ${navbarBg}`}>
+            <nav className={`w-full min-h-[80px] fixed top-0 z-10 bg-white border-b-[0.5px] ${navbarBg}`}>
                 <div className={`w-full md:flex md:px-10 ${navbar?'':'px-5'}`}>
                     <div className="md:w-[15%]">
                         <div className="flex">
@@ -68,7 +68,10 @@ export default function Navigation(){
                                                 </Link>
                                             </li>
                                             <li className={`py-[13px] ${isLinkActive('/')?'text-[#7B7B7B]':'text-[#7B7B7B]'}`}>
-                                                <Link href="#" className="text-[14px] text-[#7B7B7B]">Features</Link>
+                                                <Link href="#" className="text-[14px]">Features</Link>
+                                            </li>
+                                            <li className={`py-[13px] ${isLinkActive('/blog')? 'text-[#101010]' : 'text-[#7B7B7B]'}`}>
+                                                <Link href="/blog" className="text-[14px]">Blog</Link>
                                             </li>
                                         </div>
                                     </div>
