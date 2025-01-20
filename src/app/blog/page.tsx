@@ -88,7 +88,7 @@ function Blog() {
                                     <div className="relative pb-6">
                                         <div className="absolute inset-0 mt-[-8px] bg-customBlue transform -rotate-90 scale-0 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500 z-0"></div>
 
-                                        <div className="relative z-10 px-4  transition-all duration-300">
+                                        <div className="relative z-6 px-4  transition-all duration-300">
                                             <h2 className="text-lg font-semibold mt-2 h-[60px] overflow-hidden text-ellipsis line-clamp-2 ">
                                                 {eachPost.header}
                                             </h2>
