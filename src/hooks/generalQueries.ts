@@ -190,6 +190,7 @@ export const useGeneralQueries =  ({ middleware, redirectIfAuthenticated } : Aut
             selectedDate: [],
             selectedTime: [],
             schedule_id: [],
+            duration: []
         })
         axios
             .post('/api/save-candidate-availability', props)
@@ -212,7 +213,8 @@ export const useGeneralQueries =  ({ middleware, redirectIfAuthenticated } : Aut
                         comment: error.response.data.errors?.comment ||[],
                         selectedDate: error.response.data.errors?.selectedDate ||[],
                         selectedTime: error.response.data.errors?.selectedTime ||[],
-                        schedule_id: error.response.data.errors?.schedule_id || []
+                        schedule_id: error.response.data.errors?.schedule_id || [],
+                        duration: error.response.data.errors?.duration || []
                     });
                 }else{
                     setErrors({
@@ -223,7 +225,8 @@ export const useGeneralQueries =  ({ middleware, redirectIfAuthenticated } : Aut
                         comment: [],
                         selectedDate: [],
                         selectedTime: [],
-                        schedule_id:  []
+                        schedule_id:  [],
+                        duration: []
                     });
                 }
             })

@@ -32,6 +32,7 @@ const EventSchedulesData = ({params}:any) => {
     const [status, setStatus] = useState(0);
     const [selectedDate, setSelectedDate]  = useState('');
     const [selectedTime, setSelectedTime] = useState('');
+    const [duration, setDuration] = useState(scheduledEvent.time_interval);
     const [filteredTimes, setFilteredTimes] = useState<string[]>([]);
 
     const [processing, setProcessing] =  useState(false);
@@ -48,7 +49,8 @@ const EventSchedulesData = ({params}:any) => {
         comment: [],
         selectedDate: [],
         selectedTime: [],
-        schedule_id:  []
+        schedule_id:  [],
+        duration: []
     })
 
     const [data, setData] = useState<successDataType>({
@@ -92,6 +94,7 @@ const EventSchedulesData = ({params}:any) => {
                 selectedDate,
                 selectedTime,
                 schedule_id,
+                duration,
                 setErrors,
                 setStatus,
                 setData
@@ -142,12 +145,8 @@ const EventSchedulesData = ({params}:any) => {
                                 <div className="grow border-r">
                                     <p>{scheduledEvent.name}</p>
                                     <FontAwesomeIcon icon={faClock}/>  
-                                    <span>{scheduledEvent.time_interval==60?
-                                        (
-                                            <> 1hr</>
-                                        ):(
-                                            <> {scheduledEvent.time_interval} Minutes</>
-                                        )}
+                                    <span>
+                                        {scheduledEvent.time_interval} Minutes
                                     </span>
                                 </div>
                                 <div className="md:grid md:grid-cols-2 gap-20">
