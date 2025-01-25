@@ -125,7 +125,8 @@ export interface candidateInfoErrorType{
     comment: string[];
     selectedDate: string[];
     selectedTime: string[];
-    schedule_id: string[]
+    schedule_id: string[],
+    duration: string[]
 }
 
 export interface getScheduledEventDataProps{
@@ -146,6 +147,7 @@ export interface candidateInfoProp{
     selectedDate: string;
     selectedTime: string;
     schedule_id: string;
+    duration: string;
     setStatus : (status : number) => void;
     setErrors: (errors: candidateInfoErrorType) => void;
     setData: (data: successDataType) => void;
