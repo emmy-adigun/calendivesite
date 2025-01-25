@@ -30,7 +30,7 @@ const EventSchedulesData = ({params}:any) => {
     const [transaction_reference, setTransactionReference] = useState('');
     const [step, setStep] = useState(1);
     const [status, setStatus] = useState(0);
-    const [selectedDate, setSelectedDate]  = useState('');
+    const [selectedDate, setSelectedDate]  = useState<any>();
     const [selectedTime, setSelectedTime] = useState('');
     const [duration, setDuration] = useState(scheduledEvent.time_interval);
     const [filteredTimes, setFilteredTimes] = useState<string[]>([]);
