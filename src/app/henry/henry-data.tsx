@@ -71,6 +71,7 @@ const HenryData = () =>{
                         <p className="text-sm text-yellow-400 font-sans italic mt-5">
                             Note: A WhatsApp phone number with the correct country code is required to receive your entry code.
                         </p>
+                        
                     </div>
                 </div>
             </div>
