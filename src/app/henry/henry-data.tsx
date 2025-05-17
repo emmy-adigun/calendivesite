@@ -22,42 +22,34 @@ const HenryData = () =>{
         }
     }, []);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setProcessing(true);
+        const formData = new FormData(e.target as HTMLFormElement);
+        formAction(formData);
+    };
 
-        const formData = new FormData(e.currentTarget);
-        const payload = {
-        name: formData.get("name"),
-        phone: formData.get("phone"),
-        plusOne: formData.get("plusOne"),
-        plusOneName: formData.get("plusOneName") || "",
-        };
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxjF_mgefpcZPALVuFFfkQJLJ8N_4p8_ZFsPbZBkulMlX3iEVUUSgnQGmtJlWR79JcE/exec"
-        try {
-            const res = await fetch(SCRIPT_URL, {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify(payload),
+    useEffect(() => {
+        const { error, success } = state;
+        if (success) {
+            localStorage.setItem('submitted', 'true');
+            setProcessing(false);
+            toast.success('Processed successfully',{
+                position: 'top-center',
             });
+            setTimeout(()=>{
+                window.location.reload();
+            }, 3000) 
+        }
 
-            const json = await res.json();
-            if (res.ok && json.status === "success") {
-                localStorage.setItem("submitted", "true");
-                toast.success("RSVP submitted!", { position: "top-center" });
-                setSubmitted(true);
-                setTimeout(() => router.refresh(), 2000);
-            } else {
-                throw new Error(json.message || "Unknown error");
-            }
-        } catch (err: any) {
-            toast.error(err.message, { position: "top-center" });
-        } finally {
+        if (error !== '') {
+            toast.error(error, {
+                position: 'top-center',
+            }); 
             setProcessing(false);
         }
-    };
+    }, [state, router]);
     return(
         <div className="md:flex w-full gap-20 bg-black text-white py-20 px-5 md:px-20 min-h-screen">
             {/* Invite Session */}
