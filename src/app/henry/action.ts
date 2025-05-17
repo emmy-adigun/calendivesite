@@ -6,7 +6,6 @@ export const formSubmit = async (prevState:any, formData:FormData) => {
     const phone = formData.get('phone');
     const plusOne = formData.get('plusOne');
     const plusOneName = formData.get('plusOneName'); 
-    const instagram_handle = formData.get('instagram'); 
  
     if(!name || !phone ){
         return {
@@ -46,7 +45,6 @@ export const formSubmit = async (prevState:any, formData:FormData) => {
                         phone, 
                         plusOne,
                         plusOneName,
-                        instagram_handle
                     ]
 
                 
