@@ -56,20 +56,21 @@ const HenryData = () =>{
                 <div className="w-full text-start space-y-4 p-5 pl-15">
 
                   
-                    <div className="uppercase text-lg tracking-widest text-white font-bold">
+                    <h1 className="uppercase text-2xl tracking-widest text-white font-bold">
                         Henry&apos;s Birthday Soirée - RSVP
-                    </div>
+                    </h1>
 
                 
 
                     <div>
-                    <p className="text-sm text-gray-300 font-sans leading-[30px]">
-                        We&apos;re excited to celebrate with you. Please complete the form to confirm your attendance. Each guest may bring one +1. <span className="text-yellow-400">All plus ones must be verified upon request and approval.</span>
-                    </p>
+                        <p className="text-sm text-gray-300 font-sans leading-[30px]">
+                            We&apos;re excited to celebrate with you. Please complete the form to confirm your attendance. Each guest may bring a +1. 
+                        </p>
+                        <p className="text-yellow-400 text-sm font-sans leading-[30px]">All plus ones must be verified upon request and approval.</p>
 
-                    <p className="text-sm text-yellow-400 font-sans italic mt-5">
-                        Note: A WhatsApp phone number with the correct country code is required to receive your entry code.
-                    </p>
+                        <p className="text-sm text-yellow-400 font-sans italic mt-5">
+                            Note: A WhatsApp phone number with the correct country code is required to receive your entry code.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -115,7 +116,7 @@ const HenryData = () =>{
                                 <input
                                     type="radio"
                                     name="plusOne"
-                                    value="yes"
+                                    value="Yes"
                                     onChange={() => setBringingPlusOne(true)}
                                     className="accent-white"
                                 />
@@ -125,7 +126,7 @@ const HenryData = () =>{
                                 <input
                                     type="radio"
                                     name="plusOne"
-                                    value="no"
+                                    value="No"
                                     onChange={() => setBringingPlusOne(false)}
                                     className="accent-white"
                                 />
