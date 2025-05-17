@@ -14,12 +14,17 @@ export const formSubmit = async (prevState:any, formData:FormData) => {
     }
  
  
-    
+    const rawKey = process.env.GOOGLE_PRIVATE_KEY || "";
+    const fixedKey = rawKey
+        .replace(/^"(.*)"$/, "$1")
+        .replace(/\\n/g, "\n");
+
     try {
+
         const auth = new google.auth.GoogleAuth({
             credentials: {
                 client_email: process.env.GOOGLE_CLIENT_EMAIL,
-                private_key: process.env.GOOGLE_PRIVATE_KEY
+                private_key: fixedKey
             },
             scopes: [
                 // 'https://www.googleapis.com/auth/drive',
