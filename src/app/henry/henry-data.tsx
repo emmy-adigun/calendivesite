@@ -9,7 +9,7 @@ const HenryData = () =>{
     const router = useRouter();
     const [bringingPlusOne, setBringingPlusOne] = useState<boolean | null>(null);
     const [processing, setProcessing] = useState(false);
-    const [submitted, setSubmitted] = useState(true);
+    const [submitted, setSubmitted] = useState(false);
     const [state, formAction] = useFormState(formSubmit, {
         error: '',
         success: false
