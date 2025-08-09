@@ -5,7 +5,7 @@ import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
 import { formSubmit } from "@/app/api/action";
 
-const HenryData = () =>{
+const AimaFormData = () =>{
     const router = useRouter();
     const [bringingPlusOne, setBringingPlusOne] = useState<boolean | null>(null);
     const [processing, setProcessing] = useState(false);
@@ -57,7 +57,7 @@ const HenryData = () =>{
                     <div className="order-1 md:order-2 w-full md:w-[50%]">
                         <div className="w-full text-start space-y-4 p-5 pl-15">
                             <h1 className="uppercase text-2xl tracking-widest text-white font-bold">
-                                Henry&apos;s Birthday Soirée - RSVP
+                                Aima&apos;s Birthday Soirée - RSVP
                             </h1>
                             <div>
                                 <p className="text-sm text-gray-300 font-sans leading-[30px]">
@@ -161,7 +161,7 @@ const HenryData = () =>{
                 </div>
             ):(
                 <div className="text-white py-20 md:w-[80%] mx-auto">
-                    <p className="py-3">Thank you for RSVPing to Henry&apos;s Birthday Soirée, we&apos;re excited to have you on the guest list!</p>
+                    <p className="py-3">Thank you for RSVPing to Aima&apos;s Birthday Soirée, we&apos;re excited to have you on the guest list!</p>
 
                     <p className="py-3">Please note the following:
                         <ul className="list-disc pl-6 space-y-2">
@@ -179,4 +179,4 @@ const HenryData = () =>{
         </div>
     );
 }
-export default HenryData;
+export default AimaFormData;
