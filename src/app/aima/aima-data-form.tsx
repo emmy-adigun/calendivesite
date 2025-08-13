@@ -51,22 +51,23 @@ const AimaFormData = () =>{
         }
     }, [state, router]);
     return(
-        <div className="bg-black text-white py-20 px-5 md:px-20 min-h-screen w-full">
+        <div>
             {!submitted? (
-                <div className="md:flex w-full gap-20">
-                    <div className="order-1 md:order-2 w-full md:w-[50%]">
+                <div className="md:flex aima_bg text-white py-20 px-5 md:px-20 min-h-screen w-full drop-shadow-2xl">
+                    <div className="order-1 md:order-2 w-full md:w-[50%] drop-shadow-2xl">
                         <div className="w-full text-start space-y-4 p-5 pl-15">
                             <h1 className="uppercase text-2xl tracking-widest text-white font-bold">
-                                Aima&apos;s Birthday Soirée - RSVP
+                                Aima&apos;s Love Aisland Birthday Celebration - RSVP
+
                             </h1>
                             <div>
-                                <p className="text-sm text-gray-300 font-sans leading-[30px]">
-                                    We&apos;re excited to celebrate with you. Please complete the form to confirm your attendance. Each guest may bring a +1. 
+                                <p className="text-sm text-gray-300 font-sans font-semibold leading-[30px] drop-shadow-lg">
+                                    We&apos;re excited to celebrate with you. Please complete the form to confirm your attendance. Each guest may bring a +1.
                                 </p>
-                                <p className="text-yellow-400 text-sm font-sans leading-[30px]">All plus ones must be verified upon request and approval.</p>
+                                <p className="text-yellow-400 text-sm font-sans leading-[30px] font-bold drop-shadow-lg">All plus ones must be verified upon request and approval.</p>
 
-                                <p className="text-sm text-yellow-400 font-sans italic mt-5">
-                                    Note: A WhatsApp phone number with the correct country code is required to receive your entry code.
+                                <p className="text-sm text-yellow-400 font-bold font-sans italic mt-5 drop-shadow-lg">
+                                   Note: A WhatsApp phone number with the correct country code is required to receive your entry code.
                                 </p>
                                 
                             </div>
@@ -160,8 +161,8 @@ const AimaFormData = () =>{
                     </div>
                 </div>
             ):(
-                <div className="text-white py-20 md:w-[80%] mx-auto">
-                    <p className="py-3">Thank you for RSVPing to Aima&apos;s Birthday Soirée, we&apos;re excited to have you on the guest list!</p>
+                <div className="aima_bg_2 text-white py-20 px-5 md:px-20 min-h-screen w-full drop-shadow-2xl">
+                    <p className="py-3">Thank you for RSVPing to Aima&apos;s Love Aisland Birthday Celebration, we&apos;re excited to have you on the guest list!</p>
 
                     <p className="py-3">Please note the following:
                         <ul className="list-disc pl-6 space-y-2">
@@ -171,11 +172,14 @@ const AimaFormData = () =>{
                         </ul>
                     </p>
 
-                    <p className="py-3">We can&apos;t wait to celebrate with great music, good vibes, and unforgettable moments. Dress to impress and get ready for a night to remember.</p>
+                    <p className="py-3">We&apos;re buzzing to party the night away with banging tunes, cheeky vibes, and memories you&apos;ll never forget. Dress to slay, bring your best energy, and let&apos;s make it a night to live for.</p>
 
                     <p className="pt-3">See you soon!</p>
                 </div>
             )}
+            <div className="text-center bg-black">
+                <p className="text-white">&copy; {new Date().getFullYear()} Calendive. All Rights Reserved</p>
+            </div>
         </div>
     );
 }
