@@ -1249,5 +1249,26 @@
   background-size: cover;
 }
 
+.aima_bg{
+  background: url('/images/aima2.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #003247;
+  background-position: left left;
+}
+
+.aima_bg_2{
+  background: url('/images/aima3.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #003247;
+}
+
+.drop-shadow-2xl{
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+
 
   
