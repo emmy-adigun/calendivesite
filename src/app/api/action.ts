@@ -4,8 +4,10 @@ import {google} from "googleapis";
 export const formSubmit = async (prevState:any, formData:FormData) => { 
     const name = formData.get('name');
     const phone = formData.get('phone');
+    const eventOption = formData.get('eventOption');
     const plusOne = formData.get('plusOne');
-    const plusOneName = formData.get('plusOneName'); 
+    const plusOneName = formData.get('plusOneName');
+    const plusOneWhatsAppNumber = formData.get('plusOneWhatsAppNumber');
  
     if(!name || !phone ){
         return {
@@ -40,17 +42,19 @@ export const formSubmit = async (prevState:any, formData:FormData) => {
         });
         const response = await sheets.spreadsheets.values.append({
             // spreadsheetId: process.env.GOOGLE_SHEET_ID,
-            spreadsheetId: '1LkcJyLU2H5HIdcPxEXWyp-rFhwVoPft_3uzySL62amY',
+            spreadsheetId: '1YabreOfbr8PPlWKEj4xDdrsiiLPSgot-2zArJGqGPxE',
             range: 'A1:E1',
             valueInputOption: 'USER_ENTERED',
             requestBody: {
                 values: [
                     [
                         new Date().toLocaleDateString(),
+                        eventOption,
                         name,
-                        phone, 
+                        phone,
                         plusOne,
                         plusOneName,
+                        plusOneWhatsAppNumber
                     ]
 
                 
